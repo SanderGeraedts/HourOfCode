@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
 
-    public function getDashboard() {
-        return view('dashboard');
-    }
-
     public function postSignUp(Request $request) {
         $this->validate($request, [
             'email' => 'required|email|unique:users',
@@ -51,5 +47,10 @@ class UserController extends Controller {
         }
 
         return redirect()->back();
+    }
+
+    public function getLogout() {
+        Auth::logout();
+        return redirect()->route('home');
     }
 }
