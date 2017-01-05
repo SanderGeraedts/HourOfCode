@@ -27,7 +27,26 @@ Route::post('/signin', [
 
 Route::get('/logout', [
     'uses' => 'UserController@getLogout',
-    'as' => 'logout'
+    'as' => 'logout',
+    'middleware' => 'auth'
+]);
+
+Route::get('/account', [
+   'uses' => 'UserController@getAccount',
+    'as' => 'account',
+    'middleware' => 'auth'
+]);
+
+Route::post('/account/save', [
+    'uses' => 'UserController@postSaveAccount',
+    'as' => 'account.save',
+    'middleware' => 'auth'
+]);
+
+Route::get('/account/image/{filename}', [
+    'uses' => 'UserController@getUserImage',
+    'as' => 'account.image',
+    'middleware' => 'auth'
 ]);
 
 Route::get('/dashboard', [

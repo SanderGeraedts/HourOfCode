@@ -40,4 +40,12 @@ class User extends Model implements Authenticatable
             return false;
         }
     }
+
+    public function getFileName() {
+        $name = strtolower($this->name);
+        $name = str_replace(' ', '_', $name);
+        $filename = $name . '-' . $this->id;
+
+        return $filename;
+    }
 }
